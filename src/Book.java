@@ -18,10 +18,6 @@ public class Book {
 	public void setCopy(int copy) {
 		this.copy = copy;
 	}
-
-
-	
-
 	
 	public String getTitle() {
 		return title;
