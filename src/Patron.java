@@ -12,7 +12,7 @@ public class Patron {
 	 * 
 	 */
 	public Patron(String n) {
-		name = n;
+		setName(n);
 	}
 	
 	public void display() {
@@ -20,7 +20,27 @@ public class Patron {
 	}
 	
 	public boolean equals(Object o) {
-		return true;
+		if(o == null) { return false; }
+		if(o instanceof Author) {
+			if( ((Patron)o).getName().equals(this.getName()) ) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }
