@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 /**
  * 
  */
@@ -7,12 +9,12 @@
  *
  */
 public class BookList {
-
+	private LinkedList<Book> books;
 	/**
 	 * 
 	 */
 	public BookList() {
-		// TODO Auto-generated constructor stub
+		books = new LinkedList<Book>();
 	}
 
 }

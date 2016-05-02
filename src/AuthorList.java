@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 /**
  * 
  */
@@ -7,12 +9,16 @@
  *
  */
 public class AuthorList {
-
+	private LinkedList<Author> authors;
 	/**
 	 * 
 	 */
 	public AuthorList() {
-		// TODO Auto-generated constructor stub
+		authors = new LinkedList<Author>();
+	}
+	
+	public void display() {
+		
 	}
 
 }

@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 /**
  * 
  */
@@ -7,12 +9,12 @@
  *
  */
 public class PatronList {
-
+	private LinkedList<Patron> patrons;
 	/**
 	 * 
 	 */
 	public PatronList() {
-		// TODO Auto-generated constructor stub
+		patrons = new LinkedList<Patron>();
 	}
 
 }

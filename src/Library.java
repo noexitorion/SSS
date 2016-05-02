@@ -11,17 +11,22 @@ import java.io.BufferedReader;
 public class Library {
 	private String input;
 	private BufferedReader buffer;
-	//private AuthorList al;
-	//private PatronList pl;
+	private AuthorList al;
+	private PatronList pl;
 	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		Library lib = new Library();
+		lib.importBooks("books.txt");
 		lib.run();
 	}
 	
+	private void importBooks(String file) {
+		
+	}
+
 	/**
 	 * 
 	 */
