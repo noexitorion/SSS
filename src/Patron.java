@@ -7,12 +7,20 @@
  *
  */
 public class Patron {
-
+	private String name;
 	/**
 	 * 
 	 */
-	public Patron() {
-		// TODO Auto-generated constructor stub
+	public Patron(String n) {
+		name = n;
+	}
+	
+	public void display() {
+		
+	}
+	
+	public boolean equals(Object o) {
+		return true;
 	}
 
 }
