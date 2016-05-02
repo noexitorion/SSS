@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.util.Scanner;
 
 /**
  * 
@@ -75,8 +76,56 @@ public class Library {
 	/**
 	 * 
 	 */
+	public void exit() {
+		//give the program a chance to shut down gracefully
+	}
+	
+	/**
+	 * 
+	 */
 	public void run() {
+		boolean promptAgain = true;
+		Scanner scan = new Scanner(System.in);
+		int response;
+		while(promptAgain) {
+			showOptions();
+			System.out.print(">");
+			response = scan.nextInt();
+			doAction(response);
+		}
+	}
+
+	private void doAction(int response) {
+		switch(response) {
+		case 0:
+			includeBook();
+			break;
+		case 1:
+			checkOutBook();
+			break;
+		case 2:
+			returnBook();
+			break;
+		case 3:
+			status();
+			break;
+		case 4:
+			
+			break;
+		}
 		
+	}
+
+	private void showOptions() {
+		String[] options = new String[] {"Include a book in the catalog",
+				"Check out a book",
+				"Return a book",
+				"Status",
+				"Exit" };
+		System.out.println("Enter one of the following options:");
+		for(int i=0; i < options.length; i++) {
+			System.out.println((i+1) + " " + options[i]);
+		}
 	}
 	
 }
