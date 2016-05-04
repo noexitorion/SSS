@@ -8,11 +8,13 @@
  */
 public class Patron {
 	private String name;
+	private BookList checkedOutBooks;
 	/**
 	 * 
 	 */
 	public Patron(String n) {
 		setName(n);
+		checkedOutBooks = new BookList();
 	}
 	
 	public void display() {

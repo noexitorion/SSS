@@ -3,7 +3,7 @@ public class Book {
 	
 	private String title, author, publisher;
 	private int copy;
-	
+	private Patron hasTheBook; //should be null if book is not checked out
 	
 	public Book()
 	{
