@@ -30,6 +30,10 @@ public class Patron {
 		}
 		return false;
 	}
+	
+	public void addBookToList(Book b) {
+		checkedOutBooks.add(b);
+	}
 
 	/**
 	 * @return the name

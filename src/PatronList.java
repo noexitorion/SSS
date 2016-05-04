@@ -17,6 +17,10 @@ public class PatronList {
 		patrons = new LinkedList<Patron>();
 	}
 	
+	public void add(Patron p) {
+		patrons.add(p);
+	}
+	
 	public int size() {
 		return patrons.size();
 	}

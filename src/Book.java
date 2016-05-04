@@ -22,7 +22,12 @@ public class Book {
 		return false;
 	}
 	
-	
+	public void checkOut(Patron p) {
+		if(canCheckOutBook()) {
+			checkedOutThisBook.add(p);
+			p.addBookToList(this);
+		}
+	}
 	
 	/**
 	 * @return true if books are equal to each other

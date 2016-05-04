@@ -16,5 +16,9 @@ public class BookList {
 	public BookList() {
 		books = new LinkedList<Book>();
 	}
+	
+	public void add(Book b) {
+		books.add(b);
+	}
 
 }
