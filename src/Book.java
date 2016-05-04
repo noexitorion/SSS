@@ -1,14 +1,28 @@
 
 public class Book {
 	
-	private String title, author, publisher;
+	private String title; 
+	//private String author, publisher;
 	private int copy;
-	private Patron hasTheBook = null; //should be null if book is not checked out
+	private PatronList checkedOutThisBook; //should be null if book is not checked out
 	
-	public Book()
+	public Book(String title, int copies)
 	{
-		
+		checkedOutThisBook = new PatronList();
 	}
+	
+	/**
+	 * 
+	 * @return the ability to check out this book
+	 */
+	public boolean canCheckOutBook() {
+		if(copy > checkedOutThisBook.size()) {
+			return true;
+		}
+		return false;
+	}
+	
+	
 	
 	/**
 	 * @return true if books are equal to each other
@@ -32,6 +46,7 @@ public class Book {
 		this.copy = copy;
 	}
 	
+	
 	public String getTitle() {
 		return title;
 	}
@@ -41,7 +56,7 @@ public class Book {
 		this.title = title;
 	}
 
-
+	/*
 	public String getAuthor() {
 		return author;
 	}
@@ -60,7 +75,7 @@ public class Book {
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
 	}
-
+	 */
 
 	
 

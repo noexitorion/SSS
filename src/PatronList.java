@@ -16,5 +16,9 @@ public class PatronList {
 	public PatronList() {
 		patrons = new LinkedList<Patron>();
 	}
+	
+	public int size() {
+		return patrons.size();
+	}
 
 }

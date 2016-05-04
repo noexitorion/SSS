@@ -117,10 +117,9 @@ public class Library {
 			status();
 			break;
 		case 4:
-			//exit
+			exit();
 			break;
 		}
-		
 	}
 
 	private void showOptions() {
