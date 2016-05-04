@@ -8,11 +8,12 @@
  */
 public class Author {
 	private String name;
+	private BookList booksInLibrary;
 	/**
 	 * No argument constructor
 	 */
 	public Author() {
-		
+		booksInLibrary = new BookList();
 	}
 	
 	/**
