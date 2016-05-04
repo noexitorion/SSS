@@ -6,7 +6,7 @@
  * @author khinterlong and aliao
  *
  */
-public class CheckedOutBook extends Book {
+public class CheckedOutBook {
 
 	/**
 	 * 
