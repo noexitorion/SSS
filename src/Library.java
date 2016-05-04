@@ -63,14 +63,21 @@ public class Library {
 	 * 
 	 */
 	public void checkOutBook() {
-		
+		//needs to look through the booklist and find the name of the book to checkout
+		//need to be given a patron
+		//only do follow through this if the Book isn't checked out now
+		//The book should be added to the patron's booklist
+		//the patron should be set as the person who checked out the book inside of Book
 	}
 	
 	/**
 	 * 
 	 */
 	public void returnBook() {
-		
+		//needs to look through the booklist and find the name of the book to checkout
+		//need to be given a patron
+		//remove Book from patron's booklist
+		//set the person who checked out the book to null
 	}
 	
 	/**
