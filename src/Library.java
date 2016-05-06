@@ -14,6 +14,7 @@ public class Library {
 	private BufferedReader buffer;
 	private AuthorList al;
 	private PatronList pl;
+	private BookList books;
 	
 	/**
 	 * @param args
@@ -25,7 +26,7 @@ public class Library {
 	}
 	
 	private void importBooks(String file) {
-		
+		books = BookImporter.importBooks(file);
 	}
 
 	/**
