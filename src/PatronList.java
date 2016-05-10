@@ -21,6 +21,10 @@ public class PatronList {
 		patrons.add(p);
 	}
 	
+	public void remove(Patron p) {
+		patrons.remove(p);
+	}
+	
 	public int size() {
 		return patrons.size();
 	}

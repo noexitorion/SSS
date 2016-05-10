@@ -57,7 +57,17 @@ public class Library {
 	 * 
 	 */
 	public void includeBook() {
-		
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter the name of the book: ");
+		String title = scan.nextLine();
+		System.out.println("Enter the number of copies: ");
+		int copies= scan.nextInt();
+		System.out.println("Enter the authors of the book (separated by comma): ");
+		String[] authors = scan.nextLine().split(",");
+		AuthorList authorlist = new AuthorList(authors);
+		Book b = new Book(title,copies,authorlist);
+		//add the book to each of the authors
+		books.add(b);
 	}
 	
 	/**
@@ -124,12 +134,13 @@ public class Library {
 	}
 
 	private void showOptions() {
+		
 		String[] options = new String[] {"Include a book in the catalog",
 				"Check out a book",
 				"Return a book",
 				"Status",
 				"Exit" };
-		System.out.println("Enter one of the following options:");
+		System.out.println("Enter a number to pick an option:");
 		for(int i=0; i < options.length; i++) {
 			System.out.println((i+1) + " " + options[i]);
 		}
