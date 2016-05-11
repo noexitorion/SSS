@@ -14,7 +14,14 @@ import java.util.regex.Pattern;
  */
 public class BookImporter {
 	private static final String REGEX = "([a-z,A-Z,\\s]+)(\\d+)";
-	private static Pattern p =Pattern.compile(REGEX);;
+	private static Pattern p =Pattern.compile(REGEX);
+/**
+ * The format for reading books will likely 
+ * change to a format where it can be dealt 
+ * with using only arrays. For example
+ * Book Title || author1, author2 || copies
+ * Then split using "||"
+ */
 	
 	/**
 	 * 
@@ -22,7 +29,7 @@ public class BookImporter {
 	public BookImporter() {
 	}
 	
-	public static BookList importBooks(String filename) 
+	public static void importBooks(BookList libraryBooks, AuthorList authors, String filename) 
 	{
 		File toRead = new File(filename);
 		String input = "";
@@ -35,15 +42,23 @@ public class BookImporter {
 		while(scan.hasNextLine()) {
 			input += scan.nextLine() + "\n";
 		}
-		Matcher m = p.matcher(input);
-		BookList list = new BookList();
-		while(m.find()) {
-			String title = m.group(1).trim();
-			int count = Integer.parseInt(m.group(2).trim());
-	        Book b = new Book(title,count);
-	        list.add(b);
-	    }
-		return list;
+		
+		String[] bookEntries = input.split("\n");
+		for(int i=0; i < bookEntries.length; ++i) {
+			String[] bookDetails = bookEntries[i].split("||");
+			Book b = parseBook(authors,bookDetails);
+			libraryBooks.add(b);
+		}
+	}
+
+	private static Book parseBook(AuthorList authors, String[] bookDetails) {
+		String title = bookDetails[0];
+		String[] bookAuthors = bookDetails[1].split(",");
+		AuthorList localAuthorList = new AuthorList(bookAuthors);
+		authors.addAuthors(bookAuthors);
+		int copies = Integer.parseInt(bookDetails[3]);
+		
+		return new Book(title,copies,localAuthorList);
 	}
 
 }

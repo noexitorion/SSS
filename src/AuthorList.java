@@ -18,8 +18,15 @@ public class AuthorList {
 	}
 	
 	public AuthorList(String[] a) {
+		addAuthors(a);
+	}
+	
+	public void addAuthors(String[] a) {
 		for(int i=0 ; i<a.length; ++i) {
-			authors.add(new Author(a[i]));
+			if(a[i].isEmpty() == false) {
+				authors.add(new Author(a[i].trim()));
+			}
+			
 		}
 	}
 	

@@ -26,7 +26,7 @@ public class Library {
 	}
 	
 	private void importBooks(String file) {
-		books = BookImporter.importBooks(file);
+		BookImporter.importBooks(books, al, file);
 	}
 
 	/**
