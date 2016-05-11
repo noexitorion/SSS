@@ -11,7 +11,7 @@ public class Book {
 	
 	public Book(String title, int copies)
 	{
-		authors = new AuthorList();
+		setAuthors(new AuthorList());
 		checkedOutThisBook = new PatronList();
 		this.title = title;
 		copy = copies;
@@ -20,7 +20,7 @@ public class Book {
 	public Book(String title, int copies, AuthorList authors)
 	{
 		this(title,copies);
-		this.authors = authors;
+		this.setAuthors(authors);
 	}
 	
 	/**
@@ -92,6 +92,20 @@ public class Book {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	/**
+	 * @return the authors
+	 */
+	public AuthorList getAuthors() {
+		return authors;
+	}
+
+	/**
+	 * @param authors the authors to set
+	 */
+	public void setAuthors(AuthorList authors) {
+		this.authors = authors;
 	}
 
 	/*

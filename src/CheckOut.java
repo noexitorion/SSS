@@ -26,20 +26,15 @@ public class CheckOut {
 			if (copies>0)
 			{
 				book.setCopy(copies-1);
-				CheckedOutBook done = new CheckedOutBook();
-				done.setPatron(currentPatron);
-				done.setAuthor(book.getAuthor());
-				currentPatron.addBook(done);
-				
+				String dueDate = "Soon";
+				CheckedOutBook done = new CheckedOutBook(book,currentPatron,dueDate,"1");
+				currentPatron.addBookToList(done);
 			}
 			else
 			{
 				System.out.println("There are no more copies of this book");
 			}
 			IsWorking = Menu();
-		
-		
-		
 		
 		}
 		
@@ -52,7 +47,7 @@ public class CheckOut {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Would you like to check out another book?");
 		String response = scan.nextLine();
-		if (response == "yes")
+		if (response.equals("yes"))
 		{
 			return true;
 		}
@@ -62,8 +57,10 @@ public class CheckOut {
 		}
 		
 	}
+	
 	/**
 	 * REMINDER: FIGURE OUT HOW TO SEARCH/SORT
+	 * Implement these in the booklist and patronlist
 	 */
 	private Book bookSearch(String title) throws NoBookFoundException
 	{

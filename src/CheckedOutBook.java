@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 /**
  * 
  */
@@ -15,15 +17,14 @@ public class CheckedOutBook extends Book {
 	/**
 	 * 
 	 */
-	public CheckedOutBook(String title, int copies, Patron patronus, String dueDate, String checkoutDate, String ID) {
-		super(title, copies);
+	public CheckedOutBook(Book b, Patron patronus, String dueDate, String ID) {
+		//what is the ID? should it be an attribute of the patron or the checkoutbook
+		super(b.getTitle(), 1,b.getAuthors());
+		String checkoutDate = LocalDate.now().toString();
 		this.setPatron(patronus);
 		this.setDueDate(dueDate);
 		this.setCheckoutDate(checkoutDate);
 		this.setId(ID);
-		
-		
-		// TODO Auto-generated constructor stub
 	}
 
 	public Patron getPatron() {
