@@ -1,0 +1,3 @@
+Flat Land || Math Man || 3
+Advanced Computer Thinking || Computer Man || 10
+Einstein Thoughts || Einstein || 1

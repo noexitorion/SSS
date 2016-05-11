@@ -4,9 +4,7 @@ public class Book {
 	private String title; 
 	//private String author, publisher;
 	private AuthorList authors;
-	private int copy, totalCopy;
-	private String id;
-
+	private int copy;
 	private PatronList checkedOutThisBook; //should be null if book is not checked out
 	
 	public Book(String title, int copies)
@@ -69,22 +67,6 @@ public class Book {
 	}
 	
 	
-	public int getTotalCopy() {
-		return totalCopy;
-	}
-
-	public void setTotalCopy(int totalCopy) {
-		this.totalCopy = totalCopy;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
 	public String getTitle() {
 		return title;
 	}

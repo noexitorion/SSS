@@ -9,7 +9,7 @@
 public class Patron {
 	private String name;
 	private BookList checkedOutBooks;
-	private double fines;
+	
 	/**
 	 * 
 	 */

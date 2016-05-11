@@ -11,6 +11,7 @@ public class CheckOut {
 	private void checkoutBook() throws NoBookFoundException, NoPatronFoundException
 	{
 		Scanner scan = new Scanner(System.in);
+		System.out.println("Please enter the name of the patron");
 		String patron = scan.nextLine();
 		Patron currentPatron = patronSearch(patron);
 		while (IsWorking = true)
@@ -25,7 +26,6 @@ public class CheckOut {
 			if (copies>0)
 			{
 				book.setCopy(copies-1);
-				System.out.println("Please enter the name of the patron");
 				CheckedOutBook done = new CheckedOutBook();
 				done.setPatron(currentPatron);
 				done.setAuthor(book.getAuthor());
@@ -67,6 +67,7 @@ public class CheckOut {
 	 */
 	private Book bookSearch(String title) throws NoBookFoundException
 	{
+		
 		return ;
 	}
 	private Patron patronSearch(String patronus) throws NoPatronFoundException

@@ -13,17 +13,12 @@ public class BookList {
 	/**
 	 * 
 	 */
-		private total;
 	public BookList() {
 		books = new LinkedList<Book>();
 	}
 	
 	public void add(Book b) {
 		books.add(b);
-	}
-	public void getTotal()
-	{
-		
 	}
 
 }
