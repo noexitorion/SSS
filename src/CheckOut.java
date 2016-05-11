@@ -1,4 +1,5 @@
 
+import java.time.LocalDate;
 import java.util.*;
 public class CheckOut {
 	private boolean IsWorking = true;
@@ -14,7 +15,7 @@ public class CheckOut {
 		System.out.println("Please enter the name of the patron");
 		String patron = scan.nextLine();
 		Patron currentPatron = patronSearch(patron);
-		while (IsWorking = true)
+		while (IsWorking == true)
 		{
 			System.out.println("please enter the name of the book you wish to check out");
 			String title = scan.nextLine();
@@ -22,12 +23,13 @@ public class CheckOut {
 			int copies = book.getCopy();
 			/**
 			 * REMINDER: DO A BETTER WAY OF CHECKING POSITIVES
+			 * From Kevin: this is implemented in the book class - see below
 			 */
-			if (copies>0)
+			if (book.canCheckOutBook())
 			{
-				book.setCopy(copies-1);
-				String dueDate = "Soon";
-				CheckedOutBook done = new CheckedOutBook(book,currentPatron,dueDate,"1");
+				book.checkOut(currentPatron);
+				String dueDate = LocalDate.now().plusDays(7).toString(); //return in a week
+				CheckedOutBook done = new CheckedOutBook(book,currentPatron,dueDate,Integer.toString(copies));
 				currentPatron.addBookToList(done);
 			}
 			else
