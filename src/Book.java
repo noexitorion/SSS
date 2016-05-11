@@ -10,6 +10,19 @@ public class Book {
 		
 	}
 	
+	/**
+	 * @return true if books are equal to each other
+	 */
+	public boolean equals(Object o) {
+		if(o == null) { return false; }
+		if(o instanceof Author) { //might need to expand if we add more properties
+			if( ((Book)o).getTitle().equals(this.getTitle()) ) {
+				return true;
+			}
+		}
+		return false;
+	}	
+	
 	public int getCopy() {
 		return copy;
 	}
@@ -18,10 +31,6 @@ public class Book {
 	public void setCopy(int copy) {
 		this.copy = copy;
 	}
-
-
-	
-
 	
 	public String getTitle() {
 		return title;
