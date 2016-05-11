@@ -149,9 +149,9 @@ public class Library {
 	private void showStatus()
 	{
 		System.out.println("This is the number of books");
-		System.out.println(books.getTotal());
+		System.out.println(books.size());
 		System.out.println("This is the number of patrons");
-		System.out.println(pl.getTotal();
+		System.out.println(pl.size());
 	}
 	
 }

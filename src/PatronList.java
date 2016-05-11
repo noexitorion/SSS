@@ -28,5 +28,14 @@ public class PatronList {
 	public int size() {
 		return patrons.size();
 	}
+	
+	public Patron search(Patron p) throws NoPatronFoundException {
+		for(Patron person : patrons) {
+			if(person.equals(p)) {
+				return person;
+			}
+		}
+		throw new NoPatronFoundException();
+	}
 
 }
