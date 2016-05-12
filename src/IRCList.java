@@ -16,9 +16,9 @@ import java.util.Set;
  *
  */
 public class IRCList <T extends Object & IRCItem> {
-	//make a map or set to index the patrons by letter
+	//make a map or set to index the items by letter
 	Map<Character,LinkedList<T>> map = new HashMap<Character,LinkedList<T> >();
-		
+	int size =0;
 	/**
 	 * 
 	 */
@@ -31,17 +31,17 @@ public class IRCList <T extends Object & IRCItem> {
 	public boolean add(T p) {
 		char key = p.getKey();
 		if(!map.containsKey(key)) {
-			LinkedList<T> patrons = new LinkedList<T>();
-			patrons.add(p);
-			map.put(key, patrons); //initialize map
+			LinkedList<T> items = new LinkedList<T>();
+			items.add(p);
+			map.put(key, items); //initialize map
 		} else if(map.containsKey(key) && p.compareTo(map.get(key).getFirst()) < 0) {
 			//if has key and this name is earlier sorted
 			map.get(key).addFirst(p); //set to newer patron
 		} else { //shouldn't be first in list
 			addInOrder(map.get(key), p);
 		}
-		//make this method add patrons sorted
-		
+		//make this method add items sorted
+		++size;
 		return true;
 	}
 	
@@ -110,8 +110,8 @@ public class IRCList <T extends Object & IRCItem> {
 		Collection<Character> unsorted = map.keySet();
 		List<Character> sorted = asSortedList(unsorted);
 		for(Character key : sorted) {
-			LinkedList<T> patrons = map.get(key);
-			for(T p : patrons) {
+			LinkedList<T> items = map.get(key);
+			for(T p : items) {
 				toReturn += p.getName() + ", "; //this is kind of dirty because of the hanging comma
 			}
 		}
@@ -119,13 +119,15 @@ public class IRCList <T extends Object & IRCItem> {
 	}
 	
 	public int size() {
+		return size;
+		/* //forcefully count all things
 		int sumSize =0;
 		for(Character key : map.keySet()) {
-			LinkedList<T> patrons = map.get(key);
-			sumSize += patrons.size();
+			LinkedList<T> items = map.get(key);
+			sumSize += items.size();
 		}
 		return sumSize;
-	
+		*/
 	}
 
 	public void remove(Patron p) {
@@ -137,7 +139,7 @@ public class IRCList <T extends Object & IRCItem> {
 				listIterator.remove();
 			}
 		}
-		
+		--size;
 	}
 	
 	public static <T extends Comparable<? super T>> List<T> asSortedList(Collection<T> c) {

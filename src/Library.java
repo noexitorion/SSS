@@ -54,7 +54,10 @@ public class Library {
 	 * 
 	 */
 	public void status() {
-		
+		System.out.println("This is the number of books");
+		System.out.println(books.size());
+		System.out.println("This is the number of patrons");
+		System.out.println(patrons.size());
 	}
 	
 	/**
@@ -108,6 +111,10 @@ public class Library {
 	 */
 	public void exit() {
 		//give the program a chance to shut down gracefully
+		//maybe save all books/authors and what not
+		System.out.println("System is now shutting down.");
+		System.out.println("Goodbye.");
+		System.exit(0);
 	}
 	
 	/**
@@ -157,13 +164,4 @@ public class Library {
 			System.out.println((i+1) + " " + options[i]);
 		}
 	}
-	
-	private void showStatus()
-	{
-		System.out.println("This is the number of books");
-		System.out.println(books.size());
-		System.out.println("This is the number of patrons");
-		System.out.println(patrons.size());
-	}
-	
 }
