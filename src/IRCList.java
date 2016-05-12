@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * 
@@ -15,7 +14,7 @@ import java.util.Set;
  * @author khinterlong
  *
  */
-public class IRCList <T extends Object & IRCItem> {
+public class IRCList <T extends Object & IRCItem<T>> {
 	//make a map or set to index the items by letter
 	Map<Character,LinkedList<T>> map = new HashMap<Character,LinkedList<T> >();
 	int size =0;

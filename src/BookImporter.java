@@ -1,8 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * 
@@ -13,16 +11,6 @@ import java.util.regex.Pattern;
  *
  */
 public class BookImporter {
-	private static final String REGEX = "([a-z,A-Z,\\s]+)(\\d+)";
-	private static Pattern p =Pattern.compile(REGEX);
-/**
- * The format for reading books will likely 
- * change to a format where it can be dealt 
- * with using only arrays. For example
- * Book Title || author1, author2 || copies
- * Then split using "||"
- */
-	
 	/**
 	 * 
 	 */
