@@ -117,6 +117,15 @@ public class Library {
 		System.exit(0);
 	}
 	
+	public void registerPatron() {
+		Scanner scan = new Scanner(System.in);
+		System.out.print("Enter the name of the Patron: ");
+		String name = scan.nextLine();
+		
+		Patron patron = new Patron(name);
+		patrons.add(patron);
+	}
+	
 	/**
 	 * 
 	 */
@@ -138,15 +147,17 @@ public class Library {
 				includeBook();
 				break;
 			case 2:
+				registerPatron();
+			case 3:
 				checkOutBook();
 				break;
-			case 3:
+			case 4:
 				returnBook();
 				break;
-			case 4:
+			case 5:
 				status();
 				break;
-			case 5:
+			case 6:
 				exit();
 				break;
 		}
@@ -155,6 +166,7 @@ public class Library {
 	private void showOptions() {
 		
 		String[] options = new String[] {"Include a book in the catalog",
+				"Register a Patron",
 				"Check out a book",
 				"Return a book",
 				"Status",
