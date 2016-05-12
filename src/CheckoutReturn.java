@@ -1,5 +1,5 @@
-import java.time.LocalDate;
 import java.util.Scanner;
+import java.time.LocalDate;
 
 public class CheckoutReturn {
 	private boolean isWorking = true;
@@ -7,14 +7,27 @@ public class CheckoutReturn {
 	private BookList books;
 	private PatronList patrons;
 	
-	public CheckoutReturn(BookList bookList, PatronList patronList) 
+	public CheckoutReturn(BookList bookList, PatronList patronList) throws IRCItemNotFoundException
 	{
 		Scanner scan = new Scanner(System.in);
 		books = bookList;
 		patrons = patronList;
+		System.out.println("Would you like to Check Out or Return");
+		String response = scan.nextLine();
+		if (response.equalsIgnoreCase("Check Out"))
+		{
+			Checkout();
+		}
+		if (response.equalsIgnoreCase("Return"))
+		{
+			Returner();
+		}
+		
+		
+		
 	}
 	
-	public void Checkout() throws IRCItemNotFoundException
+	private void Checkout() throws IRCItemNotFoundException
 	{
 		boolean IsWorking = true;
 		Scanner scan = new Scanner(System.in);
@@ -27,11 +40,13 @@ public class CheckoutReturn {
 			String title = scan.nextLine();
 			Book book = books.search(title);
 			int copies = book.getCopy();
+			String id = book.takeNote();
 			if (book.canCheckOutBook())
 			{
 				book.checkOut(currentPatron);
 				String dueDate = LocalDate.now().plusDays(7).toString(); //return in a week
 				CheckedOutBook done = new CheckedOutBook(book,currentPatron,dueDate,Integer.toString(copies));
+				done.setId(id);
 				currentPatron.addBookToList(done);
 			}
 			else
@@ -43,7 +58,7 @@ public class CheckoutReturn {
 		}
 	}
 		
-	public void Returner() throws IRCItemNotFoundException
+	private void Returner() throws IRCItemNotFoundException
 	{
 		
 		Scanner scan = new Scanner(System.in);
@@ -54,9 +69,15 @@ public class CheckoutReturn {
 			System.out.println("What book are you returning?");
 			String title = scan.nextLine();
 			Book currentBook = books.search(title);
+			int copies = currentBook.getCopy();
+			BookList bookl = currentPatron.getCheckedOutBooks();
+			Book idBook = bookl.get(currentBook);
+			String returnID= idBook.getId();
+			currentBook.returnNote(returnID);
+			currentBook.setCopy(copies+1);
+			currentBook.returnBook(currentPatron);
 			double owed = currentPatron.getFines();
 			currentPatron.setFines(owed+fineCalculator());
-			currentBook.returnBook(currentPatron);
 			isWorking = vmenu();
 		}
 		

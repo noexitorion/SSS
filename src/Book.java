@@ -6,6 +6,7 @@ public class Book implements IRCItem<Book> {
 	private AuthorList authors;
 	private int copy, totalCopy;
 	private String id;
+	int[] idNote;
 
 	private PatronList checkedOutThisBook; 
 	
@@ -23,6 +24,14 @@ public class Book implements IRCItem<Book> {
 		this.setAuthors(authors);
 	}
 	
+	public int[] getIdNote() {
+		return idNote;
+	}
+
+	public void setIdNote(int[] idNote) {
+		this.idNote = idNote;
+	}
+
 	/**
 	 * 
 	 * @return the ability to check out this book
@@ -42,7 +51,6 @@ public class Book implements IRCItem<Book> {
 	}
 	
 	public void returnBook(Patron p) {
-		++copy;
 		checkedOutThisBook.remove(p);
 	}
 	
@@ -67,6 +75,33 @@ public class Book implements IRCItem<Book> {
 	public void setCopy(int copy) {
 		this.copy = copy;
 	}
+	
+	public void addNote(int totalCopies)
+	{
+		idNote[totalCopies] = 1;
+	}
+	
+	public String takeNote()
+	{
+		for(int i=0; i<this.getTotalCopy(); i++)
+		{
+			if (idNote[i] == 1)
+			{
+				idNote[i] = 0;
+				this.setId(Integer.toString(i));
+				return this.getId();
+			}
+		}
+		return "0";
+	}
+	
+	public void returnNote(String ider)
+	{
+		int Identity = Integer.parseInt(ider);
+		idNote[Identity] = 1;
+		
+	}
+	
 	
 	
 	public int getTotalCopy() {
