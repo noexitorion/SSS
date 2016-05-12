@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class CheckoutReturn {
@@ -6,27 +7,14 @@ public class CheckoutReturn {
 	private BookList books;
 	private PatronList patrons;
 	
-	public CheckoutReturn(BookList bookList, PatronList patronList) throws IRCItemNotFoundException
+	public CheckoutReturn(BookList bookList, PatronList patronList) 
 	{
 		Scanner scan = new Scanner(System.in);
 		books = bookList;
 		patrons = patronList;
-		System.out.println("Would you like to Check Out or Return");
-		String response = scan.nextLine();
-		if (response.equalsIgnoreCase("Check Out"))
-		{
-			Checkout();
-		}
-		if (response.equalsIgnoreCase("Return"))
-		{
-			Returner();
-		}
-		
-		
-		
 	}
 	
-	private void Checkout() throws IRCItemNotFoundException
+	public void Checkout() throws IRCItemNotFoundException
 	{
 		boolean IsWorking = true;
 		Scanner scan = new Scanner(System.in);
@@ -55,7 +43,7 @@ public class CheckoutReturn {
 		}
 	}
 		
-	private void Returner() throws IRCItemNotFoundException
+	public void Returner() throws IRCItemNotFoundException
 	{
 		
 		Scanner scan = new Scanner(System.in);
@@ -66,10 +54,9 @@ public class CheckoutReturn {
 			System.out.println("What book are you returning?");
 			String title = scan.nextLine();
 			Book currentBook = books.search(title);
-			int copies = currentBook.getCopy();
-			currentBook.setCopy(copies+1);
 			double owed = currentPatron.getFines();
 			currentPatron.setFines(owed+fineCalculator());
+			currentBook.returnBook(currentPatron);
 			isWorking = vmenu();
 		}
 		

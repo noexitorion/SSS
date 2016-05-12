@@ -12,12 +12,16 @@ public class Library {
 	private AuthorList authors;
 	private PatronList patrons;
 	private BookList books;
+	private CheckoutReturn checkoutReturn;
 	
 	/**
 	 * 
 	 */
 	public Library() {
-		// TODO Auto-generated constructor stub
+		authors = new AuthorList();
+		patrons = new PatronList();
+		books = new BookList();
+		checkoutReturn = new CheckoutReturn(books, patrons);
 	}
 	
 	/**
@@ -25,9 +29,7 @@ public class Library {
 	 */
 	public static void main(String[] args) {
 		Library lib = new Library();
-		lib.authors = new AuthorList();
-		lib.patrons = new PatronList();
-		lib.books = new BookList();
+		
 		
 		lib.importBooks("books.txt");
 		lib.run();
@@ -87,6 +89,12 @@ public class Library {
 	 * 
 	 */
 	public void checkOutBook() {
+		try {
+			checkoutReturn.Checkout();
+		} catch (IRCItemNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		//needs to look through the booklist and find the name of the book to checkout
 		//need to be given a patron
 		//only do follow through this if the Book isn't checked out now
@@ -98,6 +106,12 @@ public class Library {
 	 * 
 	 */
 	public void returnBook() {
+		try {
+			checkoutReturn.Returner();
+		} catch (IRCItemNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		//needs to look through the booklist and find the name of the book to checkout
 		//need to be given a patron
 		//remove Book from patron's booklist
@@ -146,6 +160,7 @@ public class Library {
 				break;
 			case 2:
 				registerPatron();
+				break;
 			case 3:
 				checkOutBook();
 				break;

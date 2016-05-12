@@ -42,6 +42,7 @@ public class Book implements IRCItem<Book> {
 	}
 	
 	public void returnBook(Patron p) {
+		++copy;
 		checkedOutThisBook.remove(p);
 	}
 	
