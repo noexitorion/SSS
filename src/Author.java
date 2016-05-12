@@ -10,6 +10,8 @@ public class Author implements IRCItem<Author> {
 	private String name;
 	private BookList booksInLibrary;
 	
+	
+
 	/**
 	 * initialize Author with name
 	 */
@@ -40,6 +42,20 @@ public class Author implements IRCItem<Author> {
 	 */
 	public void display() {
 		System.out.println("Author is " + this);
+	}
+	
+	/**
+	 * @return the booksInLibrary
+	 */
+	public BookList getBooksInLibrary() {
+		return booksInLibrary;
+	}
+
+	/**
+	 * @param booksInLibrary the booksInLibrary to set
+	 */
+	public void setBooksInLibrary(BookList booksInLibrary) {
+		this.booksInLibrary = booksInLibrary;
 	}
 	
 	public String toString() {

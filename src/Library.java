@@ -80,8 +80,6 @@ public class Library {
 			authors[i].addBook(book);
 		}
 		books.add(book);
-		System.out.println(books);
-
 	}
 	
 	/**
