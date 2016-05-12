@@ -1,4 +1,3 @@
-import java.io.BufferedReader;
 import java.util.Scanner;
 
 /**
@@ -10,8 +9,6 @@ import java.util.Scanner;
  *
  */
 public class Library {
-	private String input;
-	private BufferedReader buffer;
 	private AuthorList authors;
 	private PatronList patrons;
 	private BookList books;
@@ -38,6 +35,7 @@ public class Library {
 	
 	private void importBooks(String file) {
 		BookImporter.importBooks(books, authors, file);
+		//import patrons?
 	}
 	
 	/**
