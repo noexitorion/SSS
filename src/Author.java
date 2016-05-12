@@ -6,7 +6,7 @@
  * @author khinterlong and aliao
  *
  */
-public class Author {
+public class Author implements IRCItem<Author> {
 	private String name;
 	private BookList booksInLibrary;
 	/**
@@ -58,6 +58,17 @@ public class Author {
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Override
+	public int compareTo(Author o) {
+		// TODO Auto-generated method stub
+		return getName().compareTo(o.getName());
+	}
+
+	@Override
+	public char getKey() {
+		return Character.toUpperCase(getName().charAt(0));
 	}
 
 }

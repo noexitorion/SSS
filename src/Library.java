@@ -21,8 +21,26 @@ public class Library {
 	 */
 	public static void main(String[] args) {
 		Library lib = new Library();
-		lib.importBooks("books.txt");
-		lib.run();
+		lib.al = new AuthorList();
+		lib.pl = new PatronList();
+		lib.books = new BookList();
+		Patron p1 = new Patron("A");
+		Patron p2 = new Patron("B");
+		Patron p3 = new Patron("C");
+		lib.pl.add(p2);
+		lib.pl.add(p3);
+		lib.pl.add(p1);
+		try {
+			Patron toCheck = lib.pl.get(p3);
+			System.out.println(toCheck);
+		} catch (NoPatronFoundException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println(lib.pl);
+		
+		//lib.importBooks("books.txt");
+		//lib.run();
 	}
 	
 	private void importBooks(String file) {

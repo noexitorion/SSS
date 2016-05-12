@@ -8,26 +8,13 @@ import java.util.LinkedList;
  * @author khinterlong and aliao
  *
  */
-public class BookList {
-	private LinkedList<Book> books;
+public class BookList extends IRCList<Book> {
+	
 	/**
 	 * 
 	 */
 	public BookList() {
-		books = new LinkedList<Book>();
-	}
-	
-	public void add(Book b) {
-		books.add(b);
-	}
-	
-	public void getTotal()
-	{
 		
-	}
-	
-	public int size() {
-		return books.size();
 	}
 
 }

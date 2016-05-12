@@ -8,13 +8,13 @@ import java.util.LinkedList;
  * @author khinterlong and aliao
  *
  */
-public class AuthorList {
-	private LinkedList<Author> authors;
+public class AuthorList extends IRCList<Author> {
+
 	/**
 	 * 
 	 */
 	public AuthorList() {
-		authors = new LinkedList<Author>();
+		
 	}
 	
 	public AuthorList(String[] a) {
@@ -24,14 +24,11 @@ public class AuthorList {
 	public void addAuthors(String[] a) {
 		for(int i=0 ; i<a.length; ++i) {
 			if(a[i].isEmpty() == false) {
-				authors.add(new Author(a[i].trim()));
+				add(new Author(a[i].trim()));
 			}
 			
 		}
 	}
-	
-	public void display() {
-		
-	}
+
 
 }

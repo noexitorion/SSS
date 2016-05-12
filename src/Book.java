@@ -1,5 +1,5 @@
 
-public class Book {
+public class Book implements IRCItem<Book> {
 	
 	private String title; 
 	//private String author, publisher;
@@ -105,6 +105,21 @@ public class Book {
 	 */
 	public void setAuthors(AuthorList authors) {
 		this.authors = authors;
+	}
+
+	@Override
+	public int compareTo(Book o) {
+		return getName().compareTo(o.getName());
+	}
+
+	@Override
+	public char getKey() {
+		return Character.toUpperCase(getName().charAt(0));
+	}
+
+	@Override
+	public String getName() {
+		return title;
 	}
 
 

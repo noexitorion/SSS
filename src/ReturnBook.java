@@ -1,24 +1,30 @@
 import java.util.*;
 public class ReturnBook {
 	private boolean isWorking = true;
+	private BookList checkedOutBooks;
+	private BookList books;
+	private PatronList patrons;
 	
-	public ReturnBook()
+	public ReturnBook(BookList bookList, BookList checkedOutBookList, PatronList patronList) throws NoPatronFoundException
 	{
-		
+		books = bookList;
+		checkedOutBooks = checkedOutBookList;
+		patrons = patronList;
+		returnSystem();
 	}
 	
-	private void ReturnSystem()
+	private void returnSystem() throws NoPatronFoundException
 	{
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Who is the Patron?");
 		String patron = scan.nextLine();
-		Patron currentPatron = PatronSearch(patron);
+		Patron currentPatron = patrons.search(patron);
 		while (isWorking=true)
 		{
 		System.out.println("What book are you returning?");
 		String title = scan.nextLine();
-		CheckedOutBook book = outBookSearch(title);
-		Book done = bookSearch(title);
+		CheckedOutBook book = (CheckedOutBook) checkedOutBooks.search(title);
+		Book done = books.search(title);
 		int copies = done.getCopy();
 		done.setCopy(copies+1);
 		double owed = currentPatron.getFines();
@@ -26,21 +32,6 @@ public class ReturnBook {
 		}
 		
 		
-	}
-	
-	private Patron PatronSearch(String patron)
-	{
-		return ;
-	}
-	
-	private Book bookSearch(String title)
-	{
-		return ;
-	}
-	
-	private CheckedOutBook outBookSearch(String book)
-	{
-		return ;
 	}
 	
 	private double fineCalculator()

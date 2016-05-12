@@ -1,11 +1,15 @@
 
 import java.time.LocalDate;
 import java.util.*;
-public class CheckOut {
+public class CheckoutBook {
 	private boolean IsWorking = true;
+	private BookList books;
+	private PatronList patrons;
 	
-	public CheckOut() throws NoBookFoundException, NoPatronFoundException
+	public CheckoutBook(BookList bookList, PatronList patronList) throws NoBookFoundException, NoPatronFoundException
 	{
+		books = bookList;
+		patrons = patronList;
 		checkoutBook();
 	}
 	
@@ -14,12 +18,12 @@ public class CheckOut {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Please enter the name of the patron");
 		String patron = scan.nextLine();
-		Patron currentPatron = patronSearch(patron);
+		Patron currentPatron = patrons.search(patron);
 		while (IsWorking == true)
 		{
 			System.out.println("please enter the name of the book you wish to check out");
 			String title = scan.nextLine();
-			Book book = bookSearch(title);
+			Book book = books.search(title);
 			int copies = book.getCopy();
 			/**
 			 * REMINDER: DO A BETTER WAY OF CHECKING POSITIVES
@@ -36,7 +40,7 @@ public class CheckOut {
 			{
 				System.out.println("There are no more copies of this book");
 			}
-			IsWorking = Menu();
+			IsWorking = menu();
 		
 		}
 		
@@ -44,7 +48,7 @@ public class CheckOut {
 		
 	}
 	
-	private boolean Menu()
+	private boolean menu()
 	{
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Would you like to check out another book?");
@@ -58,21 +62,6 @@ public class CheckOut {
 			return false;
 		}
 		
-	}
-	
-	/**
-	 * REMINDER: FIGURE OUT HOW TO SEARCH/SORT
-	 * Implement these in the booklist and patronlist
-	 */
-	private Book bookSearch(String title) throws NoBookFoundException
-	{
-		
-		return ;
-	}
-	private Patron patronSearch(String patronus) throws NoPatronFoundException
-	{
-		
-		return ;
 	}
 
 }
