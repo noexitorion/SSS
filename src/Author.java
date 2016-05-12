@@ -85,5 +85,12 @@ public class Author implements IRCItem<Author> {
 	public char getKey() {
 		return Character.toUpperCase(getName().charAt(0));
 	}
+	
+	public Object clone() throws CloneNotSupportedException {
+		super.clone();
+		Author cloned = new Author(getName());
+		cloned.setBooksInLibrary((BookList)booksInLibrary.clone());
+		return cloned;
+	}
 
 }

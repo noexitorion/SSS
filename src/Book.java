@@ -7,7 +7,7 @@ public class Book implements IRCItem<Book> {
 	private int copy, totalCopy;
 	private String id;
 
-	private PatronList checkedOutThisBook; //should be null if book is not checked out
+	private PatronList checkedOutThisBook; 
 	
 	public Book(String title, int copies)
 	{
@@ -108,6 +108,20 @@ public class Book implements IRCItem<Book> {
 		this.authors = authors;
 	}
 
+	/**
+	 * @return the checkedOutThisBook
+	 */
+	public PatronList getCheckedOutThisBook() {
+		return checkedOutThisBook;
+	}
+
+	/**
+	 * @param checkedOutThisBook the checkedOutThisBook to set
+	 */
+	public void setCheckedOutThisBook(PatronList checkedOutThisBook) {
+		this.checkedOutThisBook = checkedOutThisBook;
+	}
+
 	@Override
 	public int compareTo(Book o) {
 		return getName().compareTo(o.getName());
@@ -121,6 +135,12 @@ public class Book implements IRCItem<Book> {
 	@Override
 	public String getName() {
 		return title;
+	}
+	
+	public Object clone() throws CloneNotSupportedException {
+		Book clone = new Book(getTitle(),copy,(AuthorList)authors.clone());
+		clone.setCheckedOutThisBook((PatronList)checkedOutThisBook.clone());
+		return clone;
 	}
 
 

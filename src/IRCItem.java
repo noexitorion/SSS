@@ -1,5 +1,5 @@
 
-public interface IRCItem<T> extends Comparable<T> {
+public interface IRCItem<T> extends Comparable<T>,Cloneable{
 	char getKey();
 	String getName();
 	int compareTo(T o);

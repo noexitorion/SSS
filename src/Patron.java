@@ -94,4 +94,10 @@ public class Patron implements IRCItem<Patron> {
 	public char getKey() {
 		return  Character.toUpperCase(getName().charAt(0));
 	}
+	
+	public Object clone() throws CloneNotSupportedException {
+		Patron clone = new Patron(getName());
+		clone.setCheckedOutBooks((BookList)checkedOutBooks.clone());
+		return clone;
+	}
 }

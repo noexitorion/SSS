@@ -14,15 +14,19 @@ import java.util.Map;
  * @author khinterlong
  *
  */
-public class IRCList <T extends Object & IRCItem<T>> {
+public class IRCList <T extends Object & IRCItem<T>> implements Cloneable {
 	//make a map or set to index the items by letter
 	Map<Character,LinkedList<T>> map = new HashMap<Character,LinkedList<T> >();
 	int size =0;
 	/**
 	 * 
 	 */
+	public IRCList(Map<Character,LinkedList<T>> map) {
+		this.map = new HashMap<Character,LinkedList<T> >(map);
+	}
+	
 	public IRCList() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	
@@ -145,6 +149,11 @@ public class IRCList <T extends Object & IRCItem<T>> {
 	  List<T> list = new ArrayList<T>(c);
 	  java.util.Collections.sort(list);
 	  return list;
+	}
+	
+	public Object clone() throws CloneNotSupportedException {
+		super.clone();
+		return new IRCList<T>(map);
 	}
 
 }
