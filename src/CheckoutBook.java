@@ -6,14 +6,14 @@ public class CheckoutBook {
 	private BookList books;
 	private PatronList patrons;
 	
-	public CheckoutBook(BookList bookList, PatronList patronList) throws NoBookFoundException, NoPatronFoundException
+	public CheckoutBook(BookList bookList, PatronList patronList) throws IRCItemNotFoundException
 	{
 		books = bookList;
 		patrons = patronList;
 		checkoutBook();
 	}
 	
-	private void checkoutBook() throws NoBookFoundException, NoPatronFoundException
+	private void checkoutBook() throws IRCItemNotFoundException
 	{
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Please enter the name of the patron");

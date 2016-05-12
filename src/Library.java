@@ -33,7 +33,7 @@ public class Library {
 		try {
 			Patron toCheck = lib.pl.get(p3);
 			System.out.println(toCheck);
-		} catch (NoPatronFoundException e) {
+		} catch (IRCItemNotFoundException e) {
 			e.printStackTrace();
 		}
 		
