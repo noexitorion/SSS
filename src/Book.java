@@ -13,7 +13,7 @@ public class Book implements IRCItem<Book> {
 	{
 		setAuthors(new AuthorList());
 		checkedOutThisBook = new PatronList();
-		this.title = title;
+		setTitle(title);
 		copy = copies;
 	}
 	
@@ -90,6 +90,7 @@ public class Book implements IRCItem<Book> {
 
 
 	public void setTitle(String title) {
+		title = title.substring(0, 1).toUpperCase() + title.substring(1);
 		this.title = title;
 	}
 

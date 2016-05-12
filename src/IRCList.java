@@ -1,7 +1,11 @@
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * 
@@ -103,7 +107,9 @@ public class IRCList <T extends Object & IRCItem> {
 	
 	public String toString() {
 		String toReturn ="";
-		for(Character key : map.keySet()) {
+		Collection<Character> unsorted = map.keySet();
+		List<Character> sorted = asSortedList(unsorted);
+		for(Character key : sorted) {
 			LinkedList<T> patrons = map.get(key);
 			for(T p : patrons) {
 				toReturn += p.getName() + ", "; //this is kind of dirty because of the hanging comma
@@ -132,6 +138,12 @@ public class IRCList <T extends Object & IRCItem> {
 			}
 		}
 		
+	}
+	
+	public static <T extends Comparable<? super T>> List<T> asSortedList(Collection<T> c) {
+	  List<T> list = new ArrayList<T>(c);
+	  java.util.Collections.sort(list);
+	  return list;
 	}
 
 }

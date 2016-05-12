@@ -12,46 +12,32 @@ import java.util.Scanner;
 public class Library {
 	private String input;
 	private BufferedReader buffer;
-	private AuthorList al;
-	private PatronList pl;
+	private AuthorList authors;
+	private PatronList patrons;
 	private BookList books;
+	
+	/**
+	 * 
+	 */
+	public Library() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		Library lib = new Library();
-		lib.al = new AuthorList();
-		lib.pl = new PatronList();
+		lib.authors = new AuthorList();
+		lib.patrons = new PatronList();
 		lib.books = new BookList();
-		Patron p1 = new Patron("A");
-		Patron p2 = new Patron("B");
-		Patron p3 = new Patron("C");
-		lib.pl.add(p2);
-		lib.pl.add(p3);
-		lib.pl.add(p1);
-		try {
-			Patron toCheck = lib.pl.get(p3);
-			System.out.println(toCheck);
-		} catch (IRCItemNotFoundException e) {
-			e.printStackTrace();
-		}
 		
-		System.out.println(lib.pl);
-		
-		//lib.importBooks("books.txt");
-		//lib.run();
+		lib.importBooks("books.txt");
+		lib.run();
 	}
 	
 	private void importBooks(String file) {
-		BookImporter.importBooks(books, al, file);
-	}
-
-	/**
-	 * 
-	 */
-	public Library() {
-		// TODO Auto-generated constructor stub
+		BookImporter.importBooks(books, authors, file);
 	}
 	
 	/**
@@ -76,16 +62,26 @@ public class Library {
 	 */
 	public void includeBook() {
 		Scanner scan = new Scanner(System.in);
-		System.out.println("Enter the name of the book: ");
+		System.out.print("Enter the name of the book: ");
 		String title = scan.nextLine();
-		System.out.println("Enter the number of copies: ");
+		System.out.print("Enter the number of copies: ");
 		int copies= scan.nextInt();
-		System.out.println("Enter the authors of the book (separated by comma): ");
-		String[] authors = scan.nextLine().split(",");
-		AuthorList authorlist = new AuthorList(authors);
-		Book b = new Book(title,copies,authorlist);
-		//add the book to each of the authors
-		books.add(b);
+		scan.nextLine();
+		System.out.print("Enter the authors of the book (separated by comma): ");
+		String[] authorNames = scan.nextLine().split(",");
+		Author[] authors = new Author[authorNames.length];
+		AuthorList authorList = new AuthorList();
+		for(int i=0; i < authors.length; ++i) {
+			authors[i] = new Author(authorNames[i]);
+			authorList.add(authors[i]);
+		}
+		Book book = new Book(title,copies,authorList);
+		for(int i=0; i < authors.length; ++i) {
+			authors[i].addBook(book);
+		}
+		books.add(book);
+		System.out.println(books);
+
 	}
 	
 	/**
@@ -133,21 +129,21 @@ public class Library {
 
 	private void doAction(int response) {
 		switch(response) {
-		case 0:
-			includeBook();
-			break;
-		case 1:
-			checkOutBook();
-			break;
-		case 2:
-			returnBook();
-			break;
-		case 3:
-			status();
-			break;
-		case 4:
-			exit();
-			break;
+			case 1:
+				includeBook();
+				break;
+			case 2:
+				checkOutBook();
+				break;
+			case 3:
+				returnBook();
+				break;
+			case 4:
+				status();
+				break;
+			case 5:
+				exit();
+				break;
 		}
 	}
 
@@ -169,7 +165,7 @@ public class Library {
 		System.out.println("This is the number of books");
 		System.out.println(books.size());
 		System.out.println("This is the number of patrons");
-		System.out.println(pl.size());
+		System.out.println(patrons.size());
 	}
 	
 }

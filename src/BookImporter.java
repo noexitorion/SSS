@@ -45,7 +45,7 @@ public class BookImporter {
 		
 		String[] bookEntries = input.split("\n");
 		for(int i=0; i < bookEntries.length; ++i) {
-			String[] bookDetails = bookEntries[i].split("||");
+			String[] bookDetails = bookEntries[i].split("\\W+[||]\\W+");
 			Book b = parseBook(authors,bookDetails);
 			libraryBooks.add(b);
 		}
@@ -56,7 +56,7 @@ public class BookImporter {
 		String[] bookAuthors = bookDetails[1].split(",");
 		AuthorList localAuthorList = new AuthorList(bookAuthors);
 		authors.addAuthors(bookAuthors);
-		int copies = Integer.parseInt(bookDetails[3]);
+		int copies = Integer.parseInt(bookDetails[2]);
 		
 		return new Book(title,copies,localAuthorList);
 	}

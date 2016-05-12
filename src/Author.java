@@ -9,17 +9,12 @@
 public class Author implements IRCItem<Author> {
 	private String name;
 	private BookList booksInLibrary;
-	/**
-	 * No argument constructor
-	 */
-	public Author() {
-		booksInLibrary = new BookList();
-	}
 	
 	/**
 	 * initialize Author with name
 	 */
 	public Author(String name) {
+		booksInLibrary = new BookList();
 		this.name = name;
 	}
 	
@@ -34,6 +29,10 @@ public class Author implements IRCItem<Author> {
 			}
 		}
 		return false;
+	}
+	
+	public void addBook(Book b) {
+		booksInLibrary.add(b);
 	}
 	
 	/**
