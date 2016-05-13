@@ -150,6 +150,10 @@ public class IRCList <T extends Object & IRCItem<T>> implements Cloneable {
 		--size;
 	}
 	
+	public void display() {
+		System.out.println(this);
+	}
+	
 	public static <T extends Comparable<? super T>> List<T> asSortedList(Collection<T> c) {
 	  List<T> list = new ArrayList<T>(c);
 	  java.util.Collections.sort(list);
