@@ -4,7 +4,7 @@ public class Book implements IRCItem<Book> {
 	private String title; 
 	//private String author, publisher;
 	private AuthorList authors;
-	private int copy, totalCopy;
+	private int copy;
 	private String id;
 	int[] idNote;
 
@@ -16,6 +16,7 @@ public class Book implements IRCItem<Book> {
 		checkedOutThisBook = new PatronList();
 		setTitle(title);
 		copy = copies;
+		idNote = new int[copy];
 	}
 	
 	public Book(String title, int copies, AuthorList authors)
@@ -43,6 +44,10 @@ public class Book implements IRCItem<Book> {
 		return false;
 	}
 	
+	public int getCheckedOut() {
+		return checkedOutThisBook.size();
+	}
+	
 	//aldawud mentioned that we might not want to have this here
 	public void checkOut(Patron p) {
 		if(canCheckOutBook()) {
@@ -59,7 +64,7 @@ public class Book implements IRCItem<Book> {
 	 */
 	public boolean equals(Object o) {
 		if(o == null) { return false; }
-		if(o instanceof Author) { //might need to expand if we add more properties
+		if(o instanceof Book) { //might need to expand if we add more properties
 			if( ((Book)o).getTitle().equals(this.getTitle()) ) {
 				return true;
 			}
@@ -83,7 +88,7 @@ public class Book implements IRCItem<Book> {
 	
 	public String takeNote()
 	{
-		for(int i=0; i<this.getTotalCopy(); i++)
+		for(int i=0; i<idNote.length; i++)
 		{
 			if (idNote[i] == 1)
 			{
@@ -102,16 +107,6 @@ public class Book implements IRCItem<Book> {
 		
 	}
 	
-	
-	
-	public int getTotalCopy() {
-		return totalCopy;
-	}
-
-	public void setTotalCopy(int totalCopy) {
-		this.totalCopy = totalCopy;
-	}
-
 	public String getId() {
 		return id;
 	}

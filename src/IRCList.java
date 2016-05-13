@@ -37,9 +37,6 @@ public class IRCList <T extends Object & IRCItem<T>> implements Cloneable {
 			LinkedList<T> items = new LinkedList<T>();
 			items.add(p);
 			map.put(key, items); //initialize map
-		} else if(map.containsKey(key) && p.compareTo(map.get(key).getFirst()) < 0) {
-			//if has key and this name is earlier sorted
-			map.get(key).addFirst(p); //set to newer patron
 		} else { //shouldn't be first in list
 			addInOrder(map.get(key), p);
 		}
@@ -84,9 +81,9 @@ public class IRCList <T extends Object & IRCItem<T>> implements Cloneable {
 
 	public T get(T p) throws IRCItemNotFoundException {
 		char key = p.getKey();
-		for(T person : map.get(key)) { //hopefully this foreach works with 'this'
-			if(person.equals(p)) {
-				return person;
+		for(T thing : map.get(key)) { //hopefully this foreach works with 'this'
+			if(thing.equals(p)) {
+				return thing;
 			}
 		}
 		throw new IRCItemNotFoundException("Couldn't find" + p + " using key of " + key);
@@ -100,12 +97,20 @@ public class IRCList <T extends Object & IRCItem<T>> implements Cloneable {
 	
 	
 	public T search(char key, String p) throws IRCItemNotFoundException {
-		for(T person : map.get(key)) { //hopefully this foreach works with 'this'
-			if(person.getName().equalsIgnoreCase(p)) {
-				return person;
+		try {
+			for(T person : map.get(key)) {
+				String name =person.getName().toUpperCase();
+				if(p.toUpperCase().compareTo(name) > 0) {
+					break;
+				} else if (name.equalsIgnoreCase(p)) {
+					return person;
+				}
 			}
+		} catch (Exception e) {
+			
 		}
-		throw new IRCItemNotFoundException();
+		throw new IRCItemNotFoundException("Couldn't find that user");
+		
 	}
 	
 	public String toString() {
@@ -133,7 +138,7 @@ public class IRCList <T extends Object & IRCItem<T>> implements Cloneable {
 		*/
 	}
 
-	public void remove(Patron p) {
+	public void remove(T p) {
 		char key = p.getKey();
 		ListIterator<T> listIterator = map.get(key).listIterator();
 		while(listIterator.hasNext()) { //hopefully this foreach works with 'this'

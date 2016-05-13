@@ -90,7 +90,9 @@ public class Library {
 	 */
 	public void checkOutBook() {
 		try {
+			System.out.println(patrons);
 			checkoutReturn.Checkout();
+			System.out.println(patrons);
 		} catch (IRCItemNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
