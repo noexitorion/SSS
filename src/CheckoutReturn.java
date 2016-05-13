@@ -94,7 +94,7 @@ public class CheckoutReturn {
 	private boolean cmenu()
 	{
 		Scanner scan = new Scanner(System.in);
-		System.out.println("Would you like to check out another book?");
+		System.out.println("Would you like to check out another book? (Please type yes if so.)");
 		String response = scan.nextLine();
 		if (response.equals("yes"))
 		{
@@ -110,7 +110,7 @@ public class CheckoutReturn {
 	private boolean vmenu()
 	{
 		Scanner scan = new Scanner(System.in);
-		System.out.println("Would you like to return another book?");
+		System.out.println("Would you like to return another book? (Please type yes if so)");
 		String response = scan.nextLine();
 		if (response.equals("yes"))
 		{
