@@ -20,7 +20,7 @@ public class CheckoutReturn {
 		Patron currentPatron = getPatron();
 		while (IsWorking == true) 
 		{
-			System.out.println("please enter the name of the book you wish to check out");
+			System.out.println("Please enter the name of the book you wish to check out:");
 			String title = scan.nextLine();
 			Book book = books.search(title);
 			int copies = book.getCopy();
@@ -36,7 +36,7 @@ public class CheckoutReturn {
 			}
 			else
 			{
-				System.out.println("There are no more copies of this book");
+				System.out.println("There are no more copies of this book.");
 			}
 			IsWorking = cmenu();
 		
@@ -47,7 +47,7 @@ public class CheckoutReturn {
 		boolean hasPatron = false;
 		Patron currentPatron = null;
 		while(hasPatron == false) {
-			System.out.println("Please enter the name of the patron");
+			System.out.println("Please enter the name of the patron:");
 			Scanner scan = new Scanner(System.in);
 			String patron = scan.nextLine();
 			try {
@@ -79,25 +79,16 @@ public class CheckoutReturn {
 			int copies = currentBook.getCopy();
 			BookList bookl = currentPatron.getCheckedOutBooks();
 			Book idBook = bookl.search(title); //checkedOutBook
-			System.out.println(idBook); //remove me
 			currentPatron.getCheckedOutBooks().remove(idBook);			
 			String returnID= idBook.getId();
 			currentBook.returnNote(returnID);
 			currentBook.setCopy(copies+1);
 			currentBook.returnBook(currentPatron);
-			double owed = currentPatron.getFines();
-			currentPatron.setFines(owed+fineCalculator());
-			
 			System.out.println(currentPatron.getCheckedOutBooks());
 			isWorking = vmenu();
 		}
 		
 
-	}
-	private double fineCalculator()
-	{
-		System.out.println("No");
-		return 0;
 	}
 	
 	private boolean cmenu()
