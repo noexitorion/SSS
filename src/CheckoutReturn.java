@@ -85,20 +85,13 @@ public class CheckoutReturn {
 			currentBook.returnNote(returnID);
 			currentBook.setCopy(copies+1);
 			currentBook.returnBook(currentPatron);
-			double owed = currentPatron.getFines();
-			currentPatron.setFines(owed+fineCalculator());
-			
 			System.out.println(currentPatron.getCheckedOutBooks());
 			isWorking = vmenu();
 		}
 		
 
 	}
-	private double fineCalculator()
-	{
-		System.out.println("No");
-		return 0;
-	}
+
 	
 	private boolean cmenu()
 	{
