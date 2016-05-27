@@ -10,6 +10,27 @@ import java.util.Scanner;
  */
 public class Library {
 	private AuthorList authors;
+	/**
+	 * @return the authors
+	 */
+	public AuthorList getAuthors() {
+		return authors;
+	}
+
+	/**
+	 * @return the patrons
+	 */
+	public PatronList getPatrons() {
+		return patrons;
+	}
+
+	/**
+	 * @return the books
+	 */
+	public BookList getBooks() {
+		return books;
+	}
+
 	private PatronList patrons;
 	private BookList books;
 	private CheckoutReturn checkoutReturn;
@@ -72,6 +93,10 @@ public class Library {
 		scan.nextLine();
 		System.out.print("Enter the authors of the book (separated by comma): ");
 		String[] authorNames = scan.nextLine().split(",");
+		includeBook(title,copies,authorNames);
+	}
+	
+	public void includeBook(String title, int copies, String[] authorNames ) {
 		Author[] authors = new Author[authorNames.length];
 		AuthorList authorList = new AuthorList();
 		for(int i=0; i < authors.length; ++i) {
@@ -102,6 +127,14 @@ public class Library {
 		//only do follow through this if the Book isn't checked out now
 		//The book should be added to the patron's booklist
 		//the patron should be set as the person who checked out the book inside of Book
+	}
+	
+	public void checkoutBook(Patron p, Book b) throws Exception {
+		checkoutReturn.Checkout(p,b);
+	}
+	
+	public void returnBook(Patron p, Book b) throws IRCItemNotFoundException {
+		checkoutReturn.Return(p,b);
 	}
 	
 	/**
@@ -135,7 +168,10 @@ public class Library {
 		Scanner scan = new Scanner(System.in);
 		System.out.print("Enter the name of the Patron: ");
 		String name = scan.nextLine();
-		
+		registerPatron(name);
+	}
+	
+	public void registerPatron(String name) {
 		Patron patron = new Patron(name);
 		patrons.add(patron);
 	}

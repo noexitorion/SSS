@@ -104,7 +104,6 @@ public class Book implements IRCItem<Book> {
 	{
 		int Identity = Integer.parseInt(ider);
 		idNote[Identity] = 1;
-		
 	}
 	
 	public String getId() {

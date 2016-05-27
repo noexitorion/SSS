@@ -11,30 +11,24 @@ import javax.swing.*;
 public class textReader extends JPanel implements ActionListener {
 	protected JTextField textField;
 	protected JTextArea textArea;
+	protected JButton login;
+	protected JButton register;
     private final static String newline = "\n";
     private String text;
 	
 	public textReader()
 	{
-		super(new GridBagLayout());
+		super(new FlowLayout());
 		
         textArea = new JTextArea(5, 20);
         textArea.setEditable(false);
         textField = new JTextField(20);
 		textField.addActionListener(this);
         JScrollPane scrollPane = new JScrollPane(textArea);
-        GridBagConstraints c = new GridBagConstraints();
-        c.gridwidth = GridBagConstraints.REMAINDER;
-
-        c.fill = GridBagConstraints.HORIZONTAL;
         
-        add(scrollPane, c);
-        
-
-        c.fill = GridBagConstraints.BOTH;
-        c.weightx = 1.0;
-        c.weighty = 1.0;
-        add(textField, c);
+        add(login);
+        add(register);
+        add(textField);
         
         
 	}

@@ -32,6 +32,7 @@ public class CheckoutReturn {
 				CheckedOutBook done = new CheckedOutBook(book,currentPatron,dueDate,Integer.toString(copies));
 				done.setId(id);
 				currentPatron.addBookToList(done);
+				book.setCopy(copies-1);
 				System.out.println(book.getCheckedOut());
 			}
 			else
@@ -79,7 +80,7 @@ public class CheckoutReturn {
 			int copies = currentBook.getCopy();
 			BookList bookl = currentPatron.getCheckedOutBooks();
 			Book idBook = bookl.search(title); //checkedOutBook
-			currentPatron.getCheckedOutBooks().remove(idBook);			
+			currentPatron.getCheckedOutBooks().remove(idBook);	
 			String returnID= idBook.getId();
 			currentBook.returnNote(returnID);
 			currentBook.setCopy(copies+1);
@@ -119,6 +120,39 @@ public class CheckoutReturn {
 		else
 		{
 			return false;
+		}
+		
+	}
+
+	public void Return(Patron currentPatron, Book currentBook) throws IRCItemNotFoundException {
+		int copies = currentBook.getCopy();
+		BookList bookl = currentPatron.getCheckedOutBooks();
+		Book idBook = bookl.search(currentBook.getTitle()); //checkedOutBook
+		currentPatron.getCheckedOutBooks().remove(idBook);	
+		String returnID= idBook.getId();
+		currentBook.returnNote(returnID);
+		currentBook.setCopy(copies+1);
+		currentBook.returnBook(currentPatron);
+		
+	}
+	
+	public void Checkout(Patron currentPatron, Book book) throws Exception {
+		int copies = book.getCopy();
+		
+		String id = book.takeNote();
+		if (book.canCheckOutBook())
+		{
+			book.checkOut(currentPatron);
+			String dueDate = LocalDate.now().plusDays(7).toString(); //return in a week
+			CheckedOutBook done = new CheckedOutBook(book,currentPatron,dueDate,Integer.toString(copies));
+			done.setId(id);
+			currentPatron.addBookToList(done);
+			book.setCopy(copies-1);
+			System.out.println(book.getCheckedOut());
+		}
+		else
+		{
+			throw new Exception("Book can't be checked out.");
 		}
 		
 	}
